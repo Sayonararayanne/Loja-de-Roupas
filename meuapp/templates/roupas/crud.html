@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<div class="page-breadcrumb">
+    <div class="row">
+        <div class="col-12 d-flex no-block align-items-center">
+            <h4 class="page-title">CRUD</h4>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-start justify-content-between">
+                        <h5 class="card-title">CRUD de roupas</h5>
+                        <a href="{% url 'criar_Roupas' %}" class="btn btn-primary btn-sm">Nova Roupa</a>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Tipo de roupa</th>
+                                    <th scope="col">Cor</th>
+                                    <th scope="col">Tamanho</th>
+                                    <th scope="col">Preço</th>
+                                    <th scope="col">Quantidade</th>
+                                    <th scope="col">Opções</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for roupa in roupas %}
+                                <tr>
+                                    <th scope="row">{{ roupa.pk }}</th>
+                                    <td>{{ roupa.tipo_de_roupa }}</td>
+                                    <td>{{ roupa.cor }}</td>                                    
+                                    <td>{{ roupa.tamanho }}</td>                                    
+                                    <td>{{ roupa.preco }}</td>                                    
+                                    <td>{{ roupa.quantidade }}</td>    
+                                    <td><a class="btn btn-warning btn-sm me-1" href="{% url 'editar_Roupas' roupa.pk %}">Editar</a><a class="btn btn-danger btn-sm" href="{% url 'delete_Roupas' roupa.pk %}">Apagar</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock conteudo %}
